@@ -16,12 +16,7 @@ const App = () => {
 		let totalRemaining = Math.round(5000 - totalDonations);
 
 		if (totalRemaining > 0) {
-			return (
-				<p>
-					<span>${totalRemaining.toLocaleString()}</span> still needed to fund
-					this project
-				</p>
-			);
+			return `$${totalRemaining.toLocaleString()} still needed to fund this project`;
 		}
 		if (totalRemaining === 0) {
 			return <p>We met our $5,000 goal. Thank you!</p>;
@@ -29,7 +24,7 @@ const App = () => {
 			return (
 				<p>
 					We are <span>${(totalRemaining * -1).toLocaleString()}</span> over our
-					$5,000 goal!
+					goal!
 				</p>
 			);
 		}
@@ -55,15 +50,15 @@ const App = () => {
 		if (totalDonors === 1) {
 			return (
 				<p>
-					Join the <span>{totalDonors}</span> donor who has already supported
-					this project.
+					Join the <span className='donor-count'>{totalDonors}</span> donor who
+					has already supported this project.
 				</p>
 			);
 		} else {
 			return (
 				<p>
-					Join the <span>{totalDonors}</span> donors who have already supported
-					this project.
+					Join the <span className='donor-count'>{totalDonors}</span> donors who
+					have already supported this project.
 				</p>
 			);
 		}
@@ -106,25 +101,38 @@ const App = () => {
 
 	//begin render
 	return (
-		<div className='container'>
+		<div>
 			<div className='update-banner'>{goalMessage()} </div>
 			<div className='fundraising-container'>
 				<div className='prog-bar'>
-					<div className='prog-fill' style={{ width: `${progPerc()}%` }}></div>
+					<div
+						className='prog-fill'
+						style={
+							progPerc() < 100
+								? { width: `${progPerc()}%` }
+								: { width: `${progPerc()}%`, borderTopRightRadius: '5px' }
+						}></div>
 				</div>
+				<div className='content'>
+					<h1>Only five days left to fund this project.</h1>
+					<div className='donor-msg'>{totalDonorMsg()}</div>
 
-				<h1>Only five days left to fund this project.</h1>
-				<div>{totalDonorMsg()}</div>
-				<form onSubmit={handleDonationSubmit}>
-					<div id='error-msg'>{errorMsg}</div>
-					<input
-						type='number'
-						step='.01'
-						value={donorEntry}
-						onChange={handleDonationChange}
-					/>
-					<input type='submit' value='Give Now' />
-				</form>
+					<div className='error-container'>
+						{errorMsg !== '' && <div id='error-msg'>{errorMsg}</div>}
+					</div>
+
+					<form className='donation-form' onSubmit={handleDonationSubmit}>
+						<span className='prefix'>$</span>
+						<input
+							id='donation-input'
+							type='number'
+							step='.01'
+							value={donorEntry}
+							onChange={handleDonationChange}
+						/>
+						<input id='donation-submit' type='submit' value='Give Now' />
+					</form>
+				</div>
 			</div>
 		</div>
 	);

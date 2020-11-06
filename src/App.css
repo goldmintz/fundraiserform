@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:ital,wght@0,400;1,700&display=swap');
+
+:root {
+	--light-blue: #e2eafc;
+	--dark-blue: #356ae5;
+	--light-green: #b6f2e4;
+	--dark-green: #19cca3;
+	--sky-blue: rgb(247, 249, 255);
+	--grey: #9298ad;
+	--error-red: #e5374a;
+}
 
 * {
 	box-sizing: border-box;
@@ -7,7 +17,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: rgb(247, 249, 255);
+	background-color: var(--sky-blue);
 	font-family: 'IBM Plex Sans', sans-serif;
 	display: flex;
 	flex-direction: column;
@@ -15,11 +25,7 @@ body {
 	justify-content: center;
 	text-align: center;
 	height: 100vh;
-}
-
-h1 {
-	font-family: 'Poppins', sans-serif;
-	font-size: 24px;
+	line-height: 1.6;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -30,43 +36,149 @@ input[type='number']::-webkit-outer-spin-button {
 	margin: 0;
 }
 
+/* Donation Update Banner */
+.update-banner {
+	background: var(--light-blue);
+	color: var(--dark-blue);
+	text-align: left;
+	padding: 10px 20px;
+	height: 40px;
+	margin-bottom: 25px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	position: relative;
+}
+
+/* speech bubble triangle */
+/* .update-banner:after {
+} */
+
+/* Main Container */
 .fundraising-container {
 	display: flex;
 	flex-direction: column;
-	align-content: flex-start;
-
 	background-color: white;
-	height: 300px;
-	width: 500px;
-	border: 1px solid grey;
-	border-radius: 5px;
+	height: 350px;
+	width: 400px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-shadow: 0px 5px 15px 3px rgba(163, 163, 163, 0.82);
 }
 
-#donor-count {
-	color: red;
+.fundraising-container .content {
+	width: 100%;
+	text-align: left;
+	padding: 20px;
+}
+
+.fundraising-container h1 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 24px;
 	font-weight: 700;
+}
+
+.donor-msg {
+	margin: 10px 0px;
+	padding: 5px 0px;
+	min-height: 40px;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size: 16;
+}
+
+.donor-msg p {
+	margin: 0px;
+	padding: 0px;
+	color: grey;
+}
+
+.donor-msg .donor-count {
+	color: black;
+	font-weight: 700;
+}
+
+/* Progress Bar */
+.prog-bar {
+	margin: 0px;
+	padding: 0px;
+	background-color: var(--light-green);
+	width: 100%;
+	height: 20px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.prog-bar .prog-fill {
+	height: 20px;
+	margin: 0px;
+	padding: 0px;
+	background-color: var(--dark-green);
+	transition: 1s ease;
+	border-top-left-radius: 5px;
+}
+
+/* Donation Form */
+.donation-form {
+	height: 40px;
+	display: flex;
+}
+
+.donation-form #donation-input,
+.donation-form #donation-submit {
+	height: 100%;
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.donation-form .prefix {
+	padding: 10px;
+	position: absolute;
+	font-size: 16px;
+	color: grey;
+}
+
+#donation-input {
+	padding: 10px 25px;
+	width: 75%;
+	font-size: 20px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border: 0.5px grey solid;
+}
+
+#donation-submit {
+	width: 25%;
+	background-color: var(--dark-green);
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-left: -10px;
+}
+
+#donation-submit:hover {
+	cursor: pointer;
 }
 
 #remaining-banner {
 	font-size: 700;
 }
 
+/* Error Message */
+/* including an error container as a placeholder so elements don't shift on toggle */
+.error-container {
+	min-height: 30px;
+	margin: 15px 0px;
+}
+
 #error-msg {
-	min-height: 20px;
-}
-
-.prog-bar {
-	margin: 0px;
-	padding: 0px;
-	background-color: #b6f2e4;
-	width: 100%;
-	height: 15px;
-}
-
-.prog-bar .prog-fill {
-	height: 15px;
-	margin: 0px;
-	padding: 0px;
-	background-color: #19cca3;
-	transition: 1s ease;
+	padding: 5px;
+	margin: 0;
+	background-color: var(--error-red);
+	color: white;
+	border-radius: 5px;
 }
