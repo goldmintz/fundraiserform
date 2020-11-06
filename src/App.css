@@ -34,7 +34,7 @@ input[type='number']::-webkit-outer-spin-button {
 	display: flex;
 	flex-direction: column;
 	align-content: flex-start;
-	padding: 20px;
+
 	background-color: white;
 	height: 300px;
 	width: 500px;
@@ -45,4 +45,28 @@ input[type='number']::-webkit-outer-spin-button {
 #donor-count {
 	color: red;
 	font-weight: 700;
+}
+
+#remaining-banner {
+	font-size: 700;
+}
+
+#error-msg {
+	min-height: 20px;
+}
+
+.prog-bar {
+	margin: 0px;
+	padding: 0px;
+	background-color: #b6f2e4;
+	width: 100%;
+	height: 15px;
+}
+
+.prog-bar .prog-fill {
+	height: 15px;
+	margin: 0px;
+	padding: 0px;
+	background-color: #19cca3;
+	transition: 1s ease;
 }

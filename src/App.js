@@ -9,26 +9,35 @@ const App = () => {
 		errorMsg: '',
 	});
 
-	//destructure state
 	const { totalDonations, totalDonors, donorEntry, errorMsg } = state;
 
-	//dynamically update goal banner message
+	//dynamically update goal banner message text
 	const goalMessage = () => {
-		let totalRemaining = 5000 - totalDonations;
+		let totalRemaining = Math.round(5000 - totalDonations);
 
 		if (totalRemaining > 0) {
-			return `${totalRemaining} still needed to fund`;
+			return (
+				<p>
+					<span>${totalRemaining.toLocaleString()}</span> still needed to fund
+					this project
+				</p>
+			);
 		}
 		if (totalRemaining === 0) {
-			return `We met our $5,000 goal. Thank you!`;
-		} else {
-			return `We are $${totalRemaining * -1} over our $5,000 goal!`;
+			return <p>We met our $5,000 goal. Thank you!</p>;
+		} else if (totalRemaining < 0) {
+			return (
+				<p>
+					We are <span>${(totalRemaining * -1).toLocaleString()}</span> over our
+					$5,000 goal!
+				</p>
+			);
 		}
 	};
 
 	//dynamically update progress bar value
 	const progPerc = () => {
-		let percToGoal = Math.ceil((totalDonations / 5000) * 100);
+		let percToGoal = Math.floor((totalDonations / 5000) * 100);
 
 		if (percToGoal <= 100) {
 			return percToGoal;
@@ -41,12 +50,22 @@ const App = () => {
 	// add donor-count id span to format count number as bold
 	const totalDonorMsg = () => {
 		if (totalDonors === 0) {
-			return `Be the first to donate to this project.`;
+			return <p>Be the first to donate to this project.</p>;
 		}
 		if (totalDonors === 1) {
-			return `Join the ${totalDonors} donor who has already supported this project.`;
+			return (
+				<p>
+					Join the <span>{totalDonors}</span> donor who has already supported
+					this project.
+				</p>
+			);
 		} else {
-			return `Join the ${totalDonors} donors who have already supported this project.`;
+			return (
+				<p>
+					Join the <span>{totalDonors}</span> donors who have already supported
+					this project.
+				</p>
+			);
 		}
 	};
 
@@ -61,11 +80,18 @@ const App = () => {
 	const handleDonationSubmit = (e) => {
 		e.preventDefault();
 
-		if (donorEntry === '' || donorEntry < 5) {
+		if (donorEntry === '') {
 			setTotals({
 				...state,
 				donorEntry: '',
-				errorMsg: 'Donations must be at least $5.00',
+				errorMsg: 'Please enter a $5 minimum donation.',
+			});
+		}
+		if (donorEntry < 5) {
+			setTotals({
+				...state,
+				donorEntry: '',
+				errorMsg: 'Donations must be at least $5.',
 			});
 		} else {
 			setTotals({
@@ -83,19 +109,21 @@ const App = () => {
 		<div className='container'>
 			<div className='update-banner'>{goalMessage()} </div>
 			<div className='fundraising-container'>
-				<div className='prog-bar'>{`${progPerc()}%`}</div>
+				<div className='prog-bar'>
+					<div className='prog-fill' style={{ width: `${progPerc()}%` }}></div>
+				</div>
 
 				<h1>Only five days left to fund this project.</h1>
-				<p>{totalDonorMsg()}</p>
+				<div>{totalDonorMsg()}</div>
 				<form onSubmit={handleDonationSubmit}>
-					<div>{errorMsg}</div>
+					<div id='error-msg'>{errorMsg}</div>
 					<input
 						type='number'
-						step='1.0'
+						step='.01'
 						value={donorEntry}
 						onChange={handleDonationChange}
 					/>
-					<input type='submit' />
+					<input type='submit' value='Give Now' />
 				</form>
 			</div>
 		</div>
