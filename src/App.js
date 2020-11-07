@@ -24,7 +24,7 @@ const App = () => {
 			return (
 				<p>
 					We are <span>${(totalRemaining * -1).toLocaleString()}</span> over our
-					goal!
+					$5,000 goal!
 				</p>
 			);
 		}

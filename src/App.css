@@ -38,22 +38,39 @@ input[type='number']::-webkit-outer-spin-button {
 
 /* Donation Update Banner */
 .update-banner {
+	display: block;
 	background: var(--light-blue);
 	color: var(--dark-blue);
 	text-align: left;
-	padding: 10px 20px;
+	padding: 10px 0px 20px 20px;
 	height: 40px;
 	margin-bottom: 25px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 	position: relative;
 }
 
-/* speech bubble triangle */
-/* .update-banner:after {
-} */
+.update-banner p {
+	margin: 0;
+	padding: 0;
+}
+
+/* update banner triangle */
+.update-banner:after {
+	content: '';
+	position: absolute;
+	bottom: 0px;
+	right: 7%;
+	width: 0;
+	height: -100px;
+	border: 15px solid transparent;
+	border-top-color: var(--light-blue);
+	border-bottom: 30px;
+	margin-left: -15px;
+	margin-bottom: -15px;
+}
 
 /* Main Container */
 .fundraising-container {
@@ -72,7 +89,7 @@ input[type='number']::-webkit-outer-spin-button {
 .fundraising-container .content {
 	width: 100%;
 	text-align: left;
-	padding: 20px;
+	padding: 25px;
 }
 
 .fundraising-container h1 {
@@ -82,7 +99,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .donor-msg {
-	margin: 10px 0px;
+	margin: 15px 0px;
 	padding: 5px 0px;
 	min-height: 40px;
 	font-family: 'IBM Plex Sans', sans-serif;
@@ -124,6 +141,7 @@ input[type='number']::-webkit-outer-spin-button {
 .donation-form {
 	height: 40px;
 	display: flex;
+	/* margin-top: 10px; */
 }
 
 .donation-form #donation-input,
@@ -133,14 +151,15 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .donation-form .prefix {
-	padding: 10px;
+	padding-left: 10px;
+	height: 100%;
 	position: absolute;
-	font-size: 16px;
+	font-size: 24px;
 	color: grey;
 }
 
 #donation-input {
-	padding: 10px 25px;
+	padding: 10px 30px;
 	width: 75%;
 	font-size: 20px;
 	border-top-left-radius: 5px;
@@ -149,7 +168,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #donation-submit {
-	width: 25%;
+	width: 26%;
 	background-color: var(--dark-green);
 	color: white;
 	font-size: 16px;
@@ -171,13 +190,12 @@ input[type='number']::-webkit-outer-spin-button {
 /* Error Message */
 /* including an error container as a placeholder so elements don't shift on toggle */
 .error-container {
-	min-height: 30px;
+	min-height: 35px;
 	margin: 15px 0px;
 }
 
 #error-msg {
 	padding: 5px;
-	margin: 0;
 	background-color: var(--error-red);
 	color: white;
 	border-radius: 5px;
