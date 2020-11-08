@@ -102,8 +102,8 @@ const App = () => {
 	//begin render
 	return (
 		<div>
-			<div className='update-banner'>{goalMessage()} </div>
-			<div className='fundraising-container'>
+			<div className='total-banner'>{goalMessage()} </div>
+			<div className='main-container'>
 				<div className='prog-bar'>
 					<div
 						className='prog-fill'
@@ -122,15 +122,17 @@ const App = () => {
 					</div>
 
 					<form className='donation-form' onSubmit={handleDonationSubmit}>
-						<span className='prefix'>$</span>
-						<input
-							id='donation-input'
-							type='number'
-							step='.01'
-							value={donorEntry}
-							onChange={handleDonationChange}
-						/>
-						<input id='donation-submit' type='submit' value='Give Now' />
+						{/*<div id='dollar-prefix'>$</div> */}
+						<div className='input-wrapper'>
+							<input
+								id='donation-input'
+								type='number'
+								step='.01'
+								value={donorEntry}
+								onChange={handleDonationChange}
+							/>
+							<input id='donation-submit' type='submit' value='Give Now' />
+						</div>
 					</form>
 				</div>
 			</div>
